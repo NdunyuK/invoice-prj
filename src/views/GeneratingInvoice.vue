@@ -1,13 +1,19 @@
 <template>
 
   <div class="pt-20 bg-rose-50">
-    <div class="flex flex-row justify-around">
+    <div class="flex flex-row justify-evenly">
        <div >
          <InvoiceForm @generateInvoice="handleGenerateInvoice" />  
        </div>
        <div>
-         <InvoicePreview  :data="invoiceData"/>
+         <InvoicePreview :data="invoiceData" @startDownload="handleStartDownload"/>
        </div>
+       <InvoiceDownloadModal
+        :show="showModal"
+        @close="showModal = false"
+        @download="handleDownload"
+      />
+
        
      </div>
   </div>
@@ -15,11 +21,15 @@
   </template>
    
    <script setup>
-   import { reactive, computed } from 'vue'
+   import { reactive, computed, ref } from 'vue'
    import InvoiceForm from '../components/InvoiceForm.vue'
    import InvoicePreview from '../components/InvoicePreview.vue'
+   import InvoiceDownloadModal from '../components/InvoiceDownloadModal.vue'
+
    
-   
+   const showModal = ref(false);
+   const reference = ref(null);
+   const verified = ref(false);
 
    const defaultInvoice = {
         myName: 'Jane Doe',
@@ -66,5 +76,57 @@
 
     console.log("form", form)
     // console.log("invoiceData", invoiceData)
+    const handleStartDownload =()=>{
+      console.log("handleStartDownload")
+      showModal.value = true
+      console.log("showModal", showModal)
+    }
+    const handleDownload = async ({ email, pro }) => {
+      if (pro) {
+        // check if user has paid, or redirect to Stripe
+        // generate PDF without watermark and send via email
+        await initializePayment(email)
+        await verifyPayment()
+
+      } else {
+        // generate PDF with watermark and send via email
+      }
+    };
+    const initializePayment = async ( email ) => {
+  
+        const response = await fetch('/.netlify/functions/createPayment', {
+        method: 'POST',
+        body: JSON.stringify({
+          email: email,
+          amount: 500, // in Naira
+        }),
+      });
+      const data = await response.json();
+      window.location.href = data.authorization_url;
+      const access_code = data.access_code;
+      const popup = new PaystackPop()
+      popup.resumeTransaction(access_code)
+      reference.value = data.reference
+
+    };
+    const verifyPayment = async ( ) => {
+  
+    const response = await fetch('/.netlify/functions/verifyPayment?reference=${reference}', {
+      method: 'GET',
+    });
+    const data = await response.json();
+    if (data.verified) {
+      verified.value = true;
+
+      // Trigger download or redirect to actual invoice
+      setTimeout(() => {
+        window.location.href = '/download-invoice'; // or generate and download inline
+      }, 2000);
+    } else {
+      verified.value = false;
+    }
+    };
+
+    
 
    </script>

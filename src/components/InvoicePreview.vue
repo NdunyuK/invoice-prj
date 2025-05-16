@@ -92,6 +92,9 @@
 
 <script setup lang="ts">
 import { generatePDF } from '../utils/pdfGenerator.js'
+import { defineEmits } from 'vue'
+const emit = defineEmits(['startDownload'])
+
 const props = defineProps<{
   data: {
     myName: string
@@ -109,8 +112,12 @@ const props = defineProps<{
     totalAmount?: number
   }
 }>()
+// const downloadPDF = () => {
+//   generatePDF(props.data)
+// }
 const downloadPDF = () => {
-  generatePDF(props.data)
+  console.log("downloadPDF")
+  emit('startDownload')
 }
 </script>
 <style scoped>
