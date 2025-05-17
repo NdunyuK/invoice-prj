@@ -1,7 +1,7 @@
 // netlify/functions/verifyPayment.js
-const axios = require('axios');
+import axios from 'axios';
 
-exports.handler = async (event) => {
+export const handler = async (event) => {
   const reference = event.queryStringParameters.reference;
 
   try {

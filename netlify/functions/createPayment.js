@@ -1,6 +1,7 @@
-const axios = require('axios');
+import axios from 'axios';
 
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
+  console.log("received initialization request")
   const { email, amount } = JSON.parse(event.body);
 
   try {
@@ -17,12 +18,14 @@ exports.handler = async (event, context) => {
         },
       }
     );
+    console.log("response calling paystack", res)
 
     return {
       statusCode: 200,
       body: JSON.stringify(res.data.data),
     };
   } catch (err) {
+    console.log("errro calling paystack", err)
     return {
       statusCode: 500,
       body: JSON.stringify({ error: err.message }),

@@ -1,6 +1,9 @@
 [build]
   functions = "netlify/functions"
-  publish = "dist"
 
 [dev]
-  functionsPort = 9999
+  framework = "vite"
+  targetPort = 5173       # Where Vite runs
+  port = 8888             # Netlify dev runs here
+  functionsPort = 9999    # Netlify's function builder runs here
+  autoLaunch = true

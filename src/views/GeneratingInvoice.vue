@@ -101,6 +101,7 @@
           amount: 500, // in Naira
         }),
       });
+      console.log("response initializePayment", response)
       const data = await response.json();
       window.location.href = data.authorization_url;
       const access_code = data.access_code;
