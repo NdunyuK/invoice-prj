@@ -2,6 +2,7 @@
 import axios from 'axios';
 
 export const handler = async (event) => {
+  console.log("verifying on the backend")
   const reference = event.queryStringParameters.reference;
 
   try {
@@ -10,6 +11,7 @@ export const handler = async (event) => {
         Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
       },
     });
+    // console.log("respones to transaction/verify", res)
 
     const paymentStatus = res.data.data.status;
 
@@ -18,6 +20,8 @@ export const handler = async (event) => {
       body: JSON.stringify({ verified: paymentStatus === 'success' }),
     };
   } catch (err) {
+    console.log("error to transaction/verify", err)
+
     return {
       statusCode: 500,
       body: JSON.stringify({ error: err.message }),

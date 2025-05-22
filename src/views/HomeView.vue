@@ -141,11 +141,7 @@ Thank you for your business. Please make payment within the stated terms.
         Generate Your Invoice Now
       </button>
     </div>
-      <!-- <div class="mt-8">
-      <a href="#" class="inline-block px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition font-semibold">
-        Start Now
-      </a>
-    </div> -->
+
     </div>
  
   </div>
@@ -165,27 +161,8 @@ Thank you for your business. Please make payment within the stated terms.
         Upgrade & Go Pro
       </button>
     </div>
-    <!-- <a href="#" class="px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition font-semibold">
-      Upgrade & Go Pro
-    </a> -->
   </div>
 </section>
-
-<!-- SEO Footer -->
-<!-- <footer class="bg-gray-100 py-6 text-center text-sm text-gray-600">
-  <p>
-    Whether you're a freelance wedding photographer or a full-time creative, this invoice generator helps you
-    look professional and get paid faster.
-  </p>
-  <div class="mt-4 space-x-4">
-    <a href="#" class="hover:underline">Terms</a>
-    <a href="#" class="hover:underline">Privacy</a>
-    <a href="#" class="hover:underline">Contact</a>
-  </div>
-  <p class="mt-2">© 2025 YourBrand. All rights reserved.</p>
-</footer> -->
-<!-- </div>  -->
-  
 
   </div>
 

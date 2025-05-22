@@ -10,7 +10,7 @@ export const handler = async (event, context) => {
       {
         email,
         amount: amount * 100, // in kobo
-        callback_url: 'https://yourdomain.com/payment-success',
+        callback_url: 'http://localhost:8888/generate', ///payment-success
       },
       {
         headers: {
@@ -18,8 +18,7 @@ export const handler = async (event, context) => {
         },
       }
     );
-    console.log("response calling paystack", res)
-
+    // console.log("response from initialize", res)
     return {
       statusCode: 200,
       body: JSON.stringify(res.data.data),
