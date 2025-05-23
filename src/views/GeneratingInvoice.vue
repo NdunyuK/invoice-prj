@@ -129,7 +129,7 @@
       const response = await fetch('/.netlify/functions/createPayment', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json', // Required!
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           email: email,
@@ -146,6 +146,9 @@
   
     const response = await fetch(`/.netlify/functions/verifyPayment?reference=${reference}`, {
       method: 'GET',
+      headers: {
+          'Content-Type': 'application/json', 
+        },
     });
     console.log("response from backend for verify", response)
     const data = await response.json();
