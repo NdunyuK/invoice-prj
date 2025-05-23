@@ -10,7 +10,7 @@ export const handler = async (event, context) => {
       {
         email,
         amount: amount * 100, // in kobo
-        callback_url: 'http://localhost:8888/generate', ///payment-success
+        callback_url: 'https://shutterinvoice.com/generate', ///payment-success
       },
       {
         headers: {
