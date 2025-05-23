@@ -128,6 +128,9 @@
   
       const response = await fetch('/.netlify/functions/createPayment', {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', // Required!
+        },
         body: JSON.stringify({
           email: email,
           amount: 5, // in Naira

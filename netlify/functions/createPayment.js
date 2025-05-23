@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const handler = async (event, context) => {
   console.log("received initialization request")
+  console.log("Raw event.body:", event.body);
   const { email, amount } = JSON.parse(event.body);
 
   try {
