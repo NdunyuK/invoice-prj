@@ -1,6 +1,7 @@
 import html2pdf from 'html2pdf.js'
+import { saveAs } from 'file-saver'
 
-export function generatePDF(data, paid = false) {
+export const generatePDF = async function (data, paid = false, resetForm) {
   console.log("is the pdf paid", paid)
 
   const totalAmount = data.items.reduce((acc, item) => acc + item.quantity * item.rate, 0)
@@ -110,8 +111,30 @@ export function generatePDF(data, paid = false) {
   </div>
   </div>`
   
- 
+  console.log("typeof resetForm before download", typeof resetForm)
 
-  html2pdf().from(element).save('invoice.pdf')
+
+ await html2pdf().from(element).save('invoice.pdf')
+  // const opt = {
+  //   margin: 0.5,
+  //   filename: 'invoice.pdf',
+  //   image: { type: 'jpeg', quality: 0.98 },
+  //   html2canvas: { scale: 2 },
+  //   jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+  // };
+
+  // const pdfBlob = await html2pdf().set(opt).from(element).outputPdf('blob');
+
+  // // ✅ Force download
+  // saveAs(pdfBlob, 'invoice.pdf');
+
+  // const blob = await html2pdf().from(element).outputPdf('blob');
+  // saveAs(blob, 'invoice.pdf');
+
+
+//  console.log("typeof resetForm", typeof resetForm)
+//  if (typeof resetForm === 'function') {
+//   resetForm();
+// }
 
 }

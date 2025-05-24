@@ -1,6 +1,5 @@
-<template>
+<!-- <template>
 <div>
-    <!-- <div class="bg-white text-gray-800">  -->
 
 <div class="bg-rose-50 shadow-sm h-[74vh]">
     <div class="flex flex-col h-full justify-around items-center text-center">
@@ -20,7 +19,6 @@
 </div>
 
 
-<!-- Benefits -->
 <section class="py-8" id="features">
   <div class="w-2/3 mx-auto p-4">
     <div class="grid md:grid-cols-3 gap-8 text-center">
@@ -40,7 +38,6 @@
   </div>
 </section>
 
-<!-- How it Works -->
 <section class="bg-white py-12" id="example">
   <div class="text-center">
     <h2 class="text-2xl font-bold mb-8">How It Works</h2>
@@ -147,7 +144,6 @@ Thank you for your business. Please make payment within the stated terms.
   </div>
 </section>
 
-<!-- Upgrade CTA -->
 <section class="bg-rose-50 py-12" id="pricing">
   <div class="max-w-3xl mx-auto px-4 text-center">
     <h2 class="text-2xl font-bold mb-2">Need More?</h2>
@@ -166,7 +162,152 @@ Thank you for your business. Please make payment within the stated terms.
 
   </div>
 
-</template>
+</template> -->
+
+
+
+<template>
+  <div>
+  <!-- Hero Section -->
+  <div class="bg-rose-50 shadow-sm min-h-[80vh] flex flex-col justify-center items-center text-center px-4">
+    <div class="max-w-3xl">
+      <h1 class="text-5xl sm:text-6xl font-extrabold text-gray-900 pb-6 leading-tight">
+        Beautiful Invoices for Wedding Photographers
+      </h1>
+      <p class="text-xl sm:text-2xl text-gray-600 mb-8">
+        Create polished, professional invoices in under a minute. No signup needed.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button class="bg-rose-500 hover:bg-pink-600 text-white text-xl font-semibold px-8 py-3 rounded shadow" @click="showGenerate">
+          Try It Free (Includes Watermark)
+        </button>
+        <button class="border border-rose-500 text-rose-500 hover:bg-rose-100 text-xl font-semibold px-8 py-3 rounded shadow" @click="showGenerate">
+          Go Pro – $5 AUD (No Watermark)
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Trust Signals -->
+  <section class="bg-white py-6 border-t border-gray-200">
+    <div class="w-11/12 md:w-3/5 mx-auto flex flex-wrap justify-center items-center gap-8 text-center">
+      <div>
+        <p class="text-gray-600 text-sm">🔒 Secure Payments with Paystack</p>
+      </div>
+      <div>
+        <p class="text-gray-600 text-sm">🇦🇺 Loved by Australian Wedding Photographers</p>
+      </div>
+      <div>
+        <p class="text-gray-600 text-sm">⭐ 100+ Invoices Generated</p>
+      </div>
+      <div>
+        <p class="text-gray-600 text-sm">🧾 No Signup Required</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Benefits Section -->
+  <section class="py-12 bg-white" id="features">
+    <div class="w-11/12 md:w-4/5 mx-auto">
+      <div class="grid md:grid-cols-3 gap-10 text-center">
+        <div>
+          <h3 class="text-xl font-semibold mb-2">📸 Built for Wedding Pros</h3>
+          <p class="text-gray-600">Include hours, locations, package types, and travel in seconds.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2">⚡ Speed Matters</h3>
+          <p class="text-gray-600">Generate invoices fast with a clean, focused form — no clutter.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2">🖨️ Print-Ready & Professional</h3>
+          <p class="text-gray-600">Clients appreciate clean, elegant documents that look the part.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- How it Works -->
+  <section class="bg-rose-50 py-12" id="example">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold">How It Works</h2>
+    </div>
+    <div class="flex flex-col md:flex-row justify-center gap-12 px-6">
+      <div class="max-w-2xl">
+        <div class="invoice-preview bg-white p-6 shadow-md rounded-md">
+          <!-- Use an illustrative static invoice preview or thumbnail -->
+          <!-- <img src="/sample-invoice.png" alt="Invoice Preview" class="rounded shadow w-full"> -->
+        </div>
+      </div>
+  
+      <div class="flex flex-col justify-center">
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold">1. Fill in Your Info</h3>
+          <p class="text-gray-600">Business name, client details, invoice items.</p>
+        </div>
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold">2. Customize Invoice</h3>
+          <p class="text-gray-600">Add rates, descriptions, and personalized notes.</p>
+        </div>
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold">3. Download Instantly</h3>
+          <p class="text-gray-600">Get your PDF instantly. No login. No wait.</p>
+        </div>
+        <button class="mt-8 bg-rose-500 hover:bg-pink-600 text-white text-lg font-semibold px-6 py-3 rounded shadow" @click="showGenerate">
+          Generate Invoice Now
+        </button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Pricing CTA -->
+  <section class="bg-white py-12" id="pricing">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-3">Upgrade to Pro – Just $5 AUD</h2>
+      <p class="text-lg text-gray-700 mb-6">Pay once to unlock premium features:</p>
+      <ul class="text-gray-600 list-disc list-inside mb-8 text-left max-w-md mx-auto">
+        <li>Watermark-free invoice PDF</li>
+        <li>High-resolution print quality</li>
+        <li>Priority download access</li>
+      </ul>
+  
+      <!-- Comparison Table -->
+      <div class="max-w-2xl mx-auto mt-8 text-sm text-gray-700">
+        <table class="w-full border border-gray-200 text-left">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="p-3 border-r border-gray-200">Feature</th>
+              <th class="p-3 border-r border-gray-200">Free</th>
+              <th class="p-3">Pro ($5 AUD)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-3 border-t border-gray-200">Watermark</td>
+              <td class="p-3 border-t border-gray-200 text-center text-rose-500">✔️</td>
+              <td class="p-3 border-t border-gray-200 text-center">❌</td>
+            </tr>
+            <tr>
+              <td class="p-3 border-t border-gray-200">High-resolution</td>
+              <td class="p-3 border-t border-gray-200 text-center">❌</td>
+              <td class="p-3 border-t border-gray-200 text-center">✔️</td>
+            </tr>
+            <tr>
+              <td class="p-3 border-t border-gray-200">Instant Download</td>
+              <td class="p-3 border-t border-gray-200 text-center">✔️</td>
+              <td class="p-3 border-t border-gray-200 text-center">✔️</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <button class="mt-8 bg-rose-500 hover:bg-pink-600 text-white text-lg font-semibold px-8 py-3 rounded shadow" @click="showGenerate">
+        Upgrade & Download
+      </button>
+    </div>
+  </section>
+  </div>
+  </template>
+  
 
 <script setup>
 

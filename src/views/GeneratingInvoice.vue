@@ -3,7 +3,7 @@
   <div class="pt-20 bg-rose-50">
     <div class="flex flex-row justify-evenly">
        <div >
-         <InvoiceForm @generateInvoice="handleGenerateInvoice" />  
+         <InvoiceForm @generateInvoice="handleGenerateInvoice" :key="formKey" />  
        </div>
        <div>
          <InvoicePreview :data="invoiceData" @startDownload="handleStartDownload"/>
@@ -14,8 +14,6 @@
         @close="showModal = false"
         @download="handleDownload"
       />
-
-
        
      </div>
   </div>
@@ -56,13 +54,17 @@
         totalAmount: 0
     }
 
-    const form = reactive({...defaultInvoice})
+    // const form = reactive({...defaultInvoice})
+    const formKey = ref(0);
+    const form = reactive(structuredClone(defaultInvoice));
+
     // merge incoming data with defaults
     const invoiceData = computed(() => ({
         ...defaultInvoice,
         ...form,
         items: form.items ?? defaultInvoice.items
     }))
+
 
     const handleGenerateInvoice = (data) => {
         for (const key in data) {
@@ -86,7 +88,39 @@
       showModal.value = true
       console.log("showModal", showModal)
     }
-    const handleDownload = async ({ email, pro }) => {
+    const handleDownload =  async ({ email, pro }) => {
+      if (pro) {
+        // check if user has paid, or redirect to Stripe
+        console.log("window.PaystackPop", window.PaystackPop)
+        console.log("email and stuff at setup", email, pro)
+        loadPaystackScript(() => {
+          const handler = window.PaystackPop.setup({
+          key: 'pk_test_3e87fde9b868de5753a937ef6a935eedaf9a59bf',
+          email: email,
+          amount: 3.5 * 100,
+          currency: 'USD',
+          onClose: () => { /* optional cancel logic */ },
+          callback:  (response) => {
+            console.log("at callback on pop")
+            if (!response || !response.reference) {
+              console.error('Invalid response from Paystack', response);
+              return;
+            }
+            // Proceed to generate the invoice here
+             verifyPayment(response.reference)
+            
+          }
+        });
+        handler.openIframe();
+        })
+
+
+
+      } else {
+        // generate PDF with watermark and send via em
+        console.log("generating pdf with watermark", verified.value)
+        generatePDF(invoiceData.value, verified.value)
+      }
       receivingPdfEmail.value = email
 
       const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzwpvQBDrxuhOTxVnMseRg8TcfDotucODJkg6QsHub5FtuQofYED8QZ0oqj_cbTGLeDTw/exec'; 
@@ -107,42 +141,23 @@
       }
 
 
-      if (pro) {
-        // check if user has paid, or redirect to Stripe
-        // generate PDF without watermark and send via email
-        try {
-          await initializePayment(email)  
-
-        } catch (error) {
-          
-        }
-
-      } else {
-        // generate PDF with watermark and send via em
-        console.log("generating pdf with watermark", verified.value)
-        generatePDF(invoiceData.value, verified.value)
-      }
-    };
-    const initializePayment = async ( email ) => {
-      console.log("initiating payment")
-  
-      const response = await fetch('/.netlify/functions/createPayment', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email,
-          amount: 5, // in Naira
-        }),
-      });
-      console.log("response initializePayment", response)
-      const data = await response.json();
-      window.location.href = data.authorization_url;
-
+ 
     };
     const verifyPayment = async ( reference) => {
       console.log("calling verify payment")
+      if (!reference) {
+        console.error("Missing reference for verification");
+        return;
+      }
+
+    const resetForm = () => {
+      console.log("resetting form")
+      Object.assign(form, structuredClone(defaultInvoice));
+      formKey.value++; // this will force the form to fully re-render
+      console.log("form after reset", form)
+
+      console.log("invoice data after reset", invoiceData)
+    };
   
     const response = await fetch(`/.netlify/functions/verifyPayment?reference=${reference}`, {
       method: 'GET',
@@ -155,25 +170,28 @@
     console.log("data transformed", data)
     if (data.verified) {
       verified.value = true;
-      generatePDF(invoiceData.value, verified.value)
+      generatePDF(invoiceData.value, verified.value, resetForm)
+      resetForm()
 
     } else {
       verified.value = false;
       paymentError.value = true;
       showModal.value =true
     }
+
+    };
+    
+    const loadPaystackScript = (callback) =>{
+      // Remove existing script if it exists
+      const oldScript = document.querySelector('script[src="https://js.paystack.co/v1/inline.js"]');
+      if (oldScript) oldScript.remove();
+
+      // Create a new script tag
+      const script = document.createElement('script');
+      script.src = "https://js.paystack.co/v1/inline.js";
+      script.onload = callback;
+      document.body.appendChild(script);
     };
 
-    onMounted(async() => {
-      const urlParams = new URLSearchParams(window.location.search);
-      console.log("urlParams", urlParams)
-      const reference = urlParams.get('reference');
-      console.log("reference form urlParams", reference)
-      
-      if (reference) {
-        await verifyPayment(reference); // Call Netlify function with this reference
-        // console.log("verified frontend response", verified)
-      }
-    });
 
    </script>

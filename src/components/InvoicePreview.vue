@@ -59,8 +59,8 @@
   >
     <div>{{ item.description }}</div>
     <div class="text-center">{{ item.quantity }}</div>
-    <div class="text-center">${{ item.rate.toFixed(2) }}</div>
-    <div class="text-right">${{ (item.quantity * item.rate).toFixed(2) }}</div>
+    <div class="text-center">${{ (Number(item.rate) || 0).toFixed(2) }}</div>
+    <div class="text-right">${{ (Number(item.quantity) * Number(item.rate) || 0).toFixed(2) }}</div>
   </div>
 </div>
 

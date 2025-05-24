@@ -151,7 +151,7 @@ watchEffect(() => {
   @apply block text-sm font-medium text-gray-600 mb-1;
 }
 .input {
-  @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4;
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 overflow-auto;
 }
 .btn {
   @apply bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200;
