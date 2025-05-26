@@ -167,7 +167,7 @@ Thank you for your business. Please make payment within the stated terms.
 
 
 <template>
-  <div>
+  <div class="pt-8">
   <!-- Hero Section -->
   <div class="bg-rose-50 shadow-sm min-h-[80vh] flex flex-col justify-center items-center text-center px-4">
     <div class="max-w-3xl">
@@ -178,10 +178,10 @@ Thank you for your business. Please make payment within the stated terms.
         Create polished, professional invoices in under a minute. No signup needed.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button class="bg-rose-500 hover:bg-pink-600 text-white text-xl font-semibold px-8 py-3 rounded shadow" @click="showGenerate">
+        <button class="border border-rose-500 text-rose-500 hover:bg-rose-100 text-xl font-semibold px-8 py-3 rounded shadow" @click="showGenerate">
           Try It Free (Includes Watermark)
         </button>
-        <button class="border border-rose-500 text-rose-500 hover:bg-rose-100 text-xl font-semibold px-8 py-3 rounded shadow" @click="showGenerate">
+        <button  class="bg-rose-500 hover:bg-pink-600 text-white text-xl font-semibold px-8 py-3 rounded shadow" @click="showGenerate">
           Go Pro – $5 AUD (No Watermark)
         </button>
       </div>
@@ -235,7 +235,7 @@ Thank you for your business. Please make payment within the stated terms.
       <div class="max-w-2xl">
         <div class="invoice-preview bg-white p-6 shadow-md rounded-md">
           <!-- Use an illustrative static invoice preview or thumbnail -->
-          <!-- <img src="/sample-invoice.png" alt="Invoice Preview" class="rounded shadow w-full"> -->
+          <img src="/images/sampleInvoice.jpg" alt="Invoice Preview" >
         </div>
       </div>
   

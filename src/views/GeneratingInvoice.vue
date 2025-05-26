@@ -95,7 +95,7 @@
         console.log("email and stuff at setup", email, pro)
         loadPaystackScript(() => {
           const handler = window.PaystackPop.setup({
-          key: 'pk_test_3e87fde9b868de5753a937ef6a935eedaf9a59bf',
+          key: 'pk_live_cc25793c06586f8491806447d9b3efc1332cb1c2',
           email: email,
           amount: 3.5 * 100,
           currency: 'USD',

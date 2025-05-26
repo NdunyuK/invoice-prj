@@ -24,17 +24,27 @@ const isHomePage = computed(() => route.path === '/')
   <div>
     <header v-show="isHomePage"
     :class="[
-      'fixed top-0 left-0 w-full bg-rose-50 transition-shadow duration-300 p-8',
+      'fixed top-0 left-0 w-full bg-rose-50 transition-shadow duration-300 p-2',
       scrolled ? 'shadow-md' : 'shadow-none'
     ]"
     >
-        <nav class="flex gap-10 justify-end pr-20">
-          <a href="#features">Features</a>
-          <a href="#example">Example</a>
-          <a href="#pricing">Pricing</a>
+        <nav >
+          <div class="flex flex-row items-center justify-between">
+            <div class="w-80">
+              <img src="/images/logo.png" alt="ShutterInvoice logo">
+            </div>
+            <div class="flex gap-10 justify-end pr-20">
+              <a href="#features">Features</a>
+              <a href="#example">Example</a>
+              <a href="#pricing">Pricing</a>
+            </div>
+
+          </div>
+     
+
         </nav>
     </header>
-    <main>
+    <main >
       <RouterView />
     </main>
 

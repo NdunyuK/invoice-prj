@@ -44,7 +44,8 @@ export const generatePDF = async function (data, paid = false, resetForm) {
 
   const element = document.createElement('div')
     element.innerHTML = 
-    `<div ${watermarkLayer}>
+    `<div >
+    ${watermarkLayer}
     <div class="bg-white p-8 shadow-md rounded-md font-sans max-w-3xl mx-auto">
     <div class="flex justify-between items-start mb-8">
       <div>
