@@ -33,7 +33,7 @@
               v-model="downloadOption"
               class="mr-2"
             />
-            Download watermark-free for &nbsp;<strong>$5</strong>
+            Download watermark-free for &nbsp;<strong>$5 AUD</strong>
           </label>
         </fieldset>
   
