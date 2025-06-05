@@ -169,7 +169,11 @@
     const data = await response.json();
     console.log("data transformed", data)
     if (data.verified) {
-      verified.value = true;
+      verified.value = true
+      gtag('event', 'conversion', {
+      'send_to': 'AW-836632376/iXNACJ3_i9QaELj-944D',
+      'transaction_id': `${reference}`
+      })
       generatePDF(invoiceData.value, verified.value, resetForm)
       resetForm()
 
