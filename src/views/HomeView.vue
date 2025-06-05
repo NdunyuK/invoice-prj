@@ -182,7 +182,7 @@ Thank you for your business. Please make payment within the stated terms.
           Try It Free (Includes Watermark)
         </button>
         <button  class="bg-rose-500 hover:bg-pink-600 text-white text-xl font-semibold px-8 py-3 rounded shadow" @click="showGenerate">
-          Go Pro – $5 AUD (No Watermark)
+          Go Pro – $5 (No Watermark)
         </button>
       </div>
     </div>
@@ -194,9 +194,9 @@ Thank you for your business. Please make payment within the stated terms.
       <div>
         <p class="text-gray-600 text-sm">🔒 Secure Payments with Paystack</p>
       </div>
-      <div>
+      <!-- <div>
         <p class="text-gray-600 text-sm">🇦🇺 Loved by Australian Wedding Photographers</p>
-      </div>
+      </div> -->
       <div>
         <p class="text-gray-600 text-sm">⭐ 100+ Invoices Generated</p>
       </div>
@@ -262,7 +262,7 @@ Thank you for your business. Please make payment within the stated terms.
   <!-- Pricing CTA -->
   <section class="bg-white py-12" id="pricing">
     <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-3">Upgrade to Pro – Just $5 AUD</h2>
+      <h2 class="text-3xl font-bold mb-3">Upgrade to Pro – Just $5</h2>
       <p class="text-lg text-gray-700 mb-6">Pay once to unlock premium features:</p>
       <ul class="text-gray-600 list-disc list-inside mb-8 text-left max-w-md mx-auto">
         <li>Watermark-free invoice PDF</li>
@@ -277,7 +277,7 @@ Thank you for your business. Please make payment within the stated terms.
             <tr>
               <th class="p-3 border-r border-gray-200">Feature</th>
               <th class="p-3 border-r border-gray-200">Free</th>
-              <th class="p-3">Pro ($5 AUD)</th>
+              <th class="p-3">Pro ($5)</th>
             </tr>
           </thead>
           <tbody>
