@@ -97,7 +97,7 @@
           const handler = window.PaystackPop.setup({
           key: 'pk_live_cc25793c06586f8491806447d9b3efc1332cb1c2',
           email: email,
-          amount: 1 * 100,
+          amount: 5 * 100,
           currency: 'USD',
           onClose: () => { /* optional cancel logic */ },
           callback:  (response) => {
